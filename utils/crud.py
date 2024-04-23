@@ -23,3 +23,13 @@ def remove_user(users: list[dict[str, str]]) -> None:
         if user["name"] == user_name:
             print(f'znaleziono użytkownika {user['name']}')
             users.remove(user)
+
+
+def update_user(users: list[dict[str, str]]) -> None:
+    user_name = input('Kogo zaktualizować?: ')
+
+    for user in users[1:]:
+        if user["name"] == user_name:
+            user['name'] = input('Podaj nowe imie')
+            user['surname'] = input('Podaj nowe nazwisko')
+            user['post'] = input('Podaj nową liczbę postów')
