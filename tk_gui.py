@@ -1,9 +1,33 @@
 from tkinter import *
 
-def prosta_funkcja():
-    print("Prosta funkcja.")
+user_list=[]
+class User:
+    def __init__(self,imie,nazwisko,posty,miejscowosc):
+        self.imie=imie
+        self.nazwisko=nazwisko
+        self.posty=posty
+        self.miejscowosc=miejscowosc
 
-root = Tk()
+def create_user()->None:
+    imie=entry_imie.get()
+    nazwisko=entry_nazwisko.get()
+    posty=entry_posty.get()
+    miejscowosc=entry_miejscowosc.get()
+    uzytkownik=User(imie,nazwisko,posty,miejscowosc)
+
+    user_list.append(uzytkownik)
+    # print(user_list)
+    show_user()
+
+
+def show_user()->None:
+    listbox_lista_uzytkownikow.delete(0,END)
+    for idx,user in enumerate (user_list):
+        print(idx,user.nazwisko,user.posty,user.miejscowosc)
+        listbox_lista_uzytkownikow.insert(idx,f'{user.imie} {user.nazwisko} {user.posty} {user.miejscowosc}')
+
+
+root=Tk()
 root.geometry("800x700")
 root.title('map_book')
 
@@ -31,7 +55,7 @@ listbox_lista_uzytkownikow.grid(row=1, column=0, columnspan=3)
 button_pokaz_szczegoly.grid(row=2, column=0)
 button_edytuj_uzytkownika.grid(row=2, column=1)
 button_usun_uzytkownika.grid(row=2, column=2)
-button_dodaj_uzytkownika=Button(ramka_formularz, text="Dodaj")
+button_dodaj_uzytkownika=Button(ramka_formularz, text="Dodaj", command=create_user)
 
 
 # ramka formularz
